@@ -2,36 +2,43 @@
  * Declaración de variables.
 **/
 let intentos = 6;
-const cantLetras= 5;
+const cantLetras = 5;
 const button = document.getElementById("guess-button");
 const URLAPi = "https://random-word-api.herokuapp.com/word?length=5&&lang=es"
-let diccionario = ["MIMAR", "PERRO", "ACTOR", "ARBOL", "ABETO", "BICHO","ZORRO","GAFAS"]
+let diccionario = ["MIMAR", "PERRO", "ACTOR", "ARBOL", "ABETO", "BICHO", "ZORRO", "GAFAS"]
 const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
-
 button.addEventListener('click', intentar)
 
-function intentar(){
+function intentar() {
     const INTENTO = leerIntento();
-    if (INTENTO === palabra ) {
-        console.log("GANASTE!")
+    if (INTENTO === palabra) {
+        terminar("<h1>GANASTE!😀</h1>")
         return
     }
-    for (let i in palabra){
-        if (INTENTO[i]===palabra[i]){
-            console.log(INTENTO[i], "VERDE")
-        } else if( palabra.includes(INTENTO[i]) ) {
-            console.log(INTENTO[i], "AMARILLO")
-        } else {
-            console.log(INTENTO[i], "GRIS")
+    const GRID = document.getElementById("grid");
+    const ROW = document.createElement('div');
+    ROW.className = "contenedor";
+    for (let i in palabra) {
+        const SPAN = document.createElement('span');
+        SPAN.className = 'letter';
+        if (INTENTO[i] === palabra[i]) { //VERDE
+            SPAN.innerHTML = INTENTO[i];
+            SPAN.style.backgroundColor = 'green';
+        } else if (palabra.includes(INTENTO[i])) { //AMARILLO
+            SPAN.innerHTML = INTENTO[i];
+            SPAN.style.backgroundColor = 'yellow';
+        } else {      //GRIS
+            SPAN.innerHTML = INTENTO[i];
+            SPAN.style.backgroundColor = 'grey';
         }
+        ROW.appendChild(SPAN)
     }
-		intentos--
-    if (intentos==0){
-        console.log("PERDISTE!")
+    GRID.appendChild(ROW)
+    intentos--
+    if (intentos == 0) {
+        terminar("<h1>PERDISTE!😖</h1>")
     }
 }
-
-
 
 function init() {
     window.addEventListener('load', init)
@@ -39,53 +46,21 @@ function init() {
 
 }
 
-function leerIntento(){
+function leerIntento() {
     let intento = document.getElementById("guess-input");
     intento = intento.value;
-    intento = intento.toUpperCase(); 
+    intento = intento.toUpperCase();
     return intento;
 }
 
-function tamañoPalabra(intento) {
-    let cantLetras = 0;
-    for (let i in intento) {
-        cantLetras += 1;
-    }
 
-    if (cantLetras == CANTLETRAS) {
-        return true
-    } else {
-        return false
-    }
-}
-
-function intentar(){
-    const INTENTO = leerIntento();
-    if (INTENTO === palabra ) {
-        console.log("GANASTE!")
-        return
-    }
-    for (let i in palabra){
-        if (INTENTO[i]===palabra[i]){
-            console.log(INTENTO[i], "VERDE")
-        } else if( palabra.includes(INTENTO[i]) ) {
-            console.log(INTENTO[i], "AMARILLO")
-        } else {
-            console.log(INTENTO[i], "GRIS")
-        }
-    }
-		intentos--
-    if (intentos==0){
-        console.log("PERDISTE!")
-    }
-}
-
-function terminar(mensaje){
+function terminar(mensaje) {
     const INPUT = document.getElementById("guess-input");
     INPUT.disabled = true;
-    BOTON.disabled = true;
+    button.disabled = true; // Cambiado de BOTON a button
     let contenedor = document.getElementById('guesses');
     contenedor.innerHTML = mensaje;
 }
+
 
 
