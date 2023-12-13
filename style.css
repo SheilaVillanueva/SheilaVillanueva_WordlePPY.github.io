@@ -1,0 +1,105 @@
+@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300&family=Raleway:wght@400;600&family=Roboto&family=Roboto+Slab&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalnia:wght@500&family=Kanit:wght@300&family=Raleway:wght@400;600&family=Roboto&family=Roboto+Slab&display=swap');
+
+body {
+  font-family: 'Kalnia', serif;
+  background-color: antiquewhite;
+}
+
+:root {
+
+  --default: #fff;
+  --vacio: #707971;
+  --incorrecto: #ff0000;
+  --correcto: #2bcc4e;
+}
+
+#wordle {
+  display: grid;
+  justify-content: center;
+  place-items: center;
+  width: 100%;
+  height: initial;
+}
+
+.grid {
+  display: grid;
+  grid-template-rows: repeat(6, auto);
+  grid-template-columns: repeat(5, auto);
+  align-content: start;
+}
+
+.contenedor .letter {
+  width: 60px;
+  height: 60px;
+  border: 3mm ridge rgba(80, 5, 42, 0.6);
+  margin: 4px;
+  color: #5e0000;
+  text-transform: uppercase;
+  display: inline-block;
+  place-items: center;
+  font-family: 'Kalnia', serif;
+  font-size: xx-large;
+  font-weight: bolder;
+}
+
+.boxEmpty {
+  background: var(--vacio);
+}
+
+.boxWrong {
+  background: var(--incorrecto);
+}
+
+.boxWright {
+  background: #2bcc4e;
+}
+
+
+h1 {
+  color: #ba0c71;
+  text-align: center;
+  margin-top: 50px;
+}
+
+#guess-input {
+  display: block;
+  margin: 0 auto 20px;
+  background-color: #ce7cb9;
+  padding: 10px;
+  font-size: 18px;
+  width: 250px;
+  border: 2mm ridge rgba(80, 5, 42, 0.6);
+}
+
+#guess-button {
+  display: block;
+  margin: 0 auto;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #ba0c71;
+  color: #fff;
+  border: 1mm ridge rgba(80, 5, 42, 0.6);
+  border-radius: 3px;
+}
+
+button:active {
+  transform: scale(0.95);
+}
+
+.letter {
+  border: 1px solid rgb(194, 17, 106);
+  padding: 3px;
+  margin: 3px;
+  min-width: 20px;
+  text-align: center;
+  display: inline-block
+}
+
+.row {
+  margin-bottom: 10px;
+}
+
+.input-area {
+  margin: 30px;
+}
