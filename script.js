@@ -9,6 +9,13 @@ let diccionario = ["MIMAR", "PERRO", "ACTOR", "ARBOL", "ABETO", "BICHO", "ZORRO"
 const palabra = diccionario[Math.floor(Math.random() * diccionario.length)];
 button.addEventListener('click', intentar)
 
+fetch(endpoint).then((response)=>{
+    response.json().then((data)=>{
+        console.log(data[0]);
+        palabra =  data[0].toUpperCase();
+    })
+});
+
 function intentar() {
     const INTENTO = leerIntento();
     if (INTENTO === palabra) {
